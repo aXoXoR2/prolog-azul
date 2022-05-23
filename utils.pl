@@ -1,20 +1,19 @@
 
-:- dynamic return/1.
+% :- dynamic return/1.
 
-return([]).
+% return([]).
+
+% Insert=..[return,MetaPredicate_Modificated],
+% Remove=..[return,[]],
+
+% assert(Insert),
+% retract(Remove)
 
 
 transducer(MetaPredicate, Transducer, Args) :-
     MetaPredicate_Transducer=..[Transducer, 
-        MetaPredicate, MetaPredicate_Modificated,Args],
+        MetaPredicate, MetaPredicate_Modificated,Args],    
     call(MetaPredicate_Transducer),
-    return(MetaPredicate_Modificated),
-    
-    Insert=..[return,[]],
-    Remove=..[return,MetaPredicate_Modificated],
-    
-    assertz(Insert),
-    retract(Remove),
 
     assertz(MetaPredicate_Modificated),
     retract(MetaPredicate), !
@@ -22,16 +21,10 @@ transducer(MetaPredicate, Transducer, Args) :-
 
 
 % Type of Transducer
-addition_transducer(MetaVariable, _, [Add]) :- 
+addition_transducer(MetaVariable, MetaPredicate_Modificated, [Add]) :- 
     MetaVariable=..[Predicate,Value],
     Addition is Value + Add,
-    MetaPredicate_Modificated=..[Predicate,Addition],
-    
-    Insert=..[return,MetaPredicate_Modificated],
-    Remove=..[return,[]],
-    
-    assert(Insert),
-    retract(Remove)
+    MetaPredicate_Modificated=..[Predicate,Addition]
 . 
 
 
@@ -41,11 +34,10 @@ addition(Variable, Value) :-
     transducer(T, addition_transducer, [Value])
 . 
 
-increase(Variable) :- 
-    addition(Variable, 1)
-. 
+% increase(Variable) :- 
+%     addition(Variable, 1)
+% . 
 
-decrease(Predicate) :- 
-    addition(Variable, -1)
-.
-% T=..[amount_of_black_chip_in_the_bag, X], call(T), transducer(T, addition, [56]), amount_of_black_chip_in_the_bag(Result).
+% decrease(Variable) :- 
+%     addition(Variable, -1)
+% . 
