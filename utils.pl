@@ -26,7 +26,7 @@ Variable was_increased_in Add :-
 
 Variable is_zero :- 
     MetaVariable=..[Variable, Value], 
-    call(T), Value = 0
+    call(MetaVariable), Value = 0
 . 
 
 Variable was_equal_to Value :- 
@@ -44,10 +44,10 @@ transducer(MetaPredicate, Transducer, Args) :-
 . 
 
 % Type of Transducer
-addition_transducer(MetaVariable, MetaPredicate_Modificated, [Add]) :- 
-    MetaVariable=..[Predicate,Value],
+addition_transducer(MetaPredicate, MetaPredicate_Modificated, [Add]) :- 
+    MetaPredicate=..[Predicate, Variable, Value],
     Addition is Value + Add,
-    MetaPredicate_Modificated=..[Predicate,Addition]
+    MetaPredicate_Modificated=..[Predicate, Variable, Addition]
 . 
 
 assignment(Variable, Value) :-
@@ -64,3 +64,9 @@ addition(Variable, Add) :-
     Addition is Current_Value + Add, 
     Addition was_assigned_to Variable
 . 
+
+addition(Predicate, Key, Add) :-
+    MetaPredicate=..[Predicate,Key,_], 
+    call(MetaPredicate), 
+    transducer(MetaPredicate,addition_transducer,[Add])
+.  

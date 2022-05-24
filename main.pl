@@ -13,6 +13,13 @@ number_of_factories_per_players(7, 3).
 number_of_factories_per_players(9, 4).
 
 
+dictionary_of_chip(1, black).
+dictionary_of_chip(2, red).
+dictionary_of_chip(3, blue).
+dictionary_of_chip(4, yellow).
+dictionary_of_chip(5, green).
+
+
 % Variables
 number_of_players(2).
 
