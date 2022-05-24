@@ -10,10 +10,8 @@
 % retract(Remove)
 
 
-:-op(350, xfx, [was_assigned_to]).
-:-op(350, xfx, [was_increased_in]).
-:-op(100, xf, [is_zero]).
-:-op(100, xfx, [was_equal_to]).
+:-op(350, xfx, [was_assigned_to, was_increased_in, was_equal_to]).
+:-op(100, xf, [is_zero, does_not_have_any_chips_available, has_chips_available]).
 
 
 Value was_assigned_to Variable :- 
@@ -33,6 +31,18 @@ Variable was_equal_to Value :-
     MetaVariable=..[Variable, Value],
     call(MetaVariable)
 .
+
+Dictionary has_chips_available :-
+    MetaPredicate=..[Dictionary, Key, Value],
+    call(MetaPredicate),
+    Value > 0, !
+. 
+
+Dictionary does_not_have_any_chips_available :-
+    not(Dictionary has_chips_available)
+. 
+
+
 
 transducer(MetaPredicate, Transducer, Args) :-
     MetaPredicate_Transducer=..[Transducer, 
