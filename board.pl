@@ -1,4 +1,4 @@
-:- [utils, factory].
+% :- [utils, factory].
 
 :- dynamic 
     amount_of_chip_in_the_bag/2
