@@ -33,7 +33,7 @@ Variable was_equal_to Value :-
 .
 
 Dictionary has_chips_available :-
-    MetaPredicate=..[Dictionary, Key, Value],
+    MetaPredicate=..[Dictionary, _, Value],
     call(MetaPredicate),
     Value > 0, !
 . 
@@ -41,8 +41,6 @@ Dictionary has_chips_available :-
 Dictionary does_not_have_any_chips_available :-
     not(Dictionary has_chips_available)
 . 
-
-
 
 transducer(MetaPredicate, Transducer, Args) :-
     MetaPredicate_Transducer=..[Transducer, 
@@ -79,4 +77,13 @@ addition(Predicate, Key, Add) :-
     MetaPredicate=..[Predicate,Key,_], 
     call(MetaPredicate), 
     transducer(MetaPredicate,addition_transducer,[Add])
-.  
+.   
+
+generated_random(L, U, X):-
+    random(L, U, X), !
+. 
+        
+generated_random(L, U, X) :- 
+    generated_random(L, U, X)
+.     
+

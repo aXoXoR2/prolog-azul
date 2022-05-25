@@ -2,11 +2,6 @@
 :- [utils, factory, board].
 
 
-% :- dynamic 
-%     initialized_game/2, 
-%     number_of_players/1
-% .
-
 % Relation between number of factories and players
 number_of_factories_per_players(5, 2).
 number_of_factories_per_players(7, 3).
@@ -24,29 +19,31 @@ dictionary_of_id_chip(5, green).
 number_of_players(2).
 
 
-
-% finished_game :-
-%        stack_of_chips_is_empty 
-% . 
-
-% finished_game :-
-%     selected_tokens,
-%     covered_wall,
-%     maintenance_was_done,
-%     finished_game
-% . 
-
-% game_worked_correctly(Number_of_Players) :- 
-%     Number_of_Players was_assigned_to number_of_players,
-%     initialized_game(Number_of_Factories, Number_of_Players),
-%     finished_game
-% . 
-
-tested(0).
-
-tested(N) :-
-    N > 0,
-    factories_were_generated_random(dictionary_of_id_chip, amount_of_chip_in_the_bag, _, 7),
-    Y is N - 1,
-    tested(Y)
+generation_of_factories_tested(Amount) :-
+    filled_factories(factories, number_of_factories, 
+                    factories_generation_transducer, 
+                    factories_were_generated_random, 
+                    dictionary_of_id_chip, 
+                    amount_of_chip_in_the_bag, Amount)
 .  
+
+
+selection_of_a_factory_randomly_tested(Item) :-    
+    selected_a_random_factory(factories,
+        number_of_factories,
+        selected_a_random_factory_transducer,
+        selected_a_random_item_of_the_list,
+        removed_item_of_the_list, Item)
+.   
+
+
+master_tester :-
+    generation_of_factories_tested(7),
+    selection_of_a_factory_randomly_tested(Item1),
+    selection_of_a_factory_randomly_tested(Item2),
+    selection_of_a_factory_randomly_tested(Item3),
+    selection_of_a_factory_randomly_tested(Item4),
+    selection_of_a_factory_randomly_tested(Item5),
+    selection_of_a_factory_randomly_tested(Item6),
+    selection_of_a_factory_randomly_tested(Item7). 
+
