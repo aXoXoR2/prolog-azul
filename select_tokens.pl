@@ -1,5 +1,5 @@
 
-:-[list, factory, board, utils].
+:-[lists/list, factory, board, utils].
 
 :- dynamic list_of_factories/1, amount_of_factories/1, jugada/3.
 

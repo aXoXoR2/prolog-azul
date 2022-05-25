@@ -1,5 +1,5 @@
 
-:- [utils, factory, board].
+:- [utils, factory, board, azulejos/azulejos_management].
 
 
 % Relation between number of factories and players
@@ -24,7 +24,7 @@ generation_of_factories_tested(Amount) :-
                     factories_generation_transducer, 
                     factories_were_generated_random, 
                     dictionary_of_id_chip, 
-                    amount_of_chip_in_the_bag, Amount)
+                    bag, Amount)
 .  
 
 
@@ -39,11 +39,11 @@ selection_of_a_factory_randomly_tested(Item) :-
 
 master_tester :-
     generation_of_factories_tested(7),
-    selection_of_a_factory_randomly_tested(Item1),
-    selection_of_a_factory_randomly_tested(Item2),
-    selection_of_a_factory_randomly_tested(Item3),
-    selection_of_a_factory_randomly_tested(Item4),
-    selection_of_a_factory_randomly_tested(Item5),
-    selection_of_a_factory_randomly_tested(Item6),
-    selection_of_a_factory_randomly_tested(Item7). 
+    selection_of_a_factory_randomly_tested(_),
+    selection_of_a_factory_randomly_tested(_),
+    selection_of_a_factory_randomly_tested(_),
+    selection_of_a_factory_randomly_tested(_),
+    selection_of_a_factory_randomly_tested(_),
+    selection_of_a_factory_randomly_tested(_),
+    selection_of_a_factory_randomly_tested(_). 
 
