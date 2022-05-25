@@ -87,3 +87,22 @@ generated_random(L, U, X) :-
     generated_random(L, U, X)
 .     
 
+
+
+
+index([X|_],0,X):-!.
+index([_|R],N,X):- N1 is N - 1,
+    index(R,N1,X).
+
+searching(X,[X|Resto],Count,Pos):-!,Pos is Count.
+searching(X,[_|R],Count,Pos):-Count1 is Count+1,searching(X,R,Count1,Pos).
+
+maxlista([X],X):-!.
+maxlista([X|T],N):- maxlista(T,N1),max(N1,X,N).
+
+max(X,Y,X):- X>Y,!.
+max(X,Y,Y):-X=<Y.
+
+length_mine([X],N):-N1 is N, N is N1+1,!.
+length_mine([_|R],N):-length_mine(R,N1),N is N1+1.
+
