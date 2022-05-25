@@ -9,17 +9,24 @@ factories([]).
 number_of_factories(0).
 
 
+
+
+
+
+
+%%%%% FACTORIES GENERATION %%%%%  
+
 factory_was_generated_random(_,_,[],0) :- !.
 
 
 factory_was_generated_random(_,Dictionary_of_chip_amount,[],Amount_of_chip_in_Factory) :-
-    Dictionary_of_chip_amount does_not_have_any_chips_available,
+    Dictionary_of_chip_amount does_not_have_any_azulejos_available,
     Amount_of_chip_in_Factory = 0, !
 . 
 
 
 factory_was_generated_random(_,Dictionary_of_chip_amount,[],Amount_of_chip_in_Factory) :-
-    Dictionary_of_chip_amount does_not_have_any_chips_available,
+    Dictionary_of_chip_amount does_not_have_any_azulejos_available,
     Amount_of_chip_in_Factory \= 0, !
 . 
 
@@ -28,7 +35,7 @@ factory_was_generated_random(Dictionary_of_id_chip, Dictionary_of_chip_amount,
         Factory, Amount_of_chip_in_Factory
     ) :-
 
-    Dictionary_of_chip_amount has_chips_available,
+    Dictionary_of_chip_amount has _ available,
     generated_random(1, 6, Random),
     
     MetaVariable=..[Dictionary_of_id_chip, Random, Chip],
@@ -59,7 +66,7 @@ factories_were_generated_random(_,_, [], 0) :- !.
 
 
 factories_were_generated_random(_,Dictionary_of_chip_amount,[],_) :-
-    Dictionary_of_chip_amount does_not_have_any_chips_available
+    Dictionary_of_chip_amount does_not_have_any_azulejos_available
 . 
 
 
@@ -92,6 +99,13 @@ factories_generation_transducer(MetaPredicate_Factories, MetaPredicate_Factories
 . 
 
 
+
+
+
+
+
+%%%%%% FILLED FACTORIES %%%%%% 
+
 filled_factories(Predicate_Factories, Predicate_Number_of_Factories, Transducer, 
         Generator, Dictionary_of_id_chip, Dictionary_of_chip_amount, Number_of_Factories
     ) :-
@@ -109,6 +123,14 @@ filled_factories(Predicate_Factories, Predicate_Number_of_Factories, Transducer,
     Length was_assigned_to Predicate_Number_of_Factories
 .  
 
+
+
+
+
+
+
+
+%%%%%% SELECTION OF A RANDOM FACTORY FACTORIES %%%%%% 
 
 selected_a_random_factory_transducer(
         MetaPredicate_Factories, MetaPredicate_Factories_Modificated,

@@ -11,7 +11,8 @@
 
 
 :-op(350, xfx, [was_assigned_to, was_increased_in, was_equal_to]).
-:-op(100, xf, [is_zero, does_not_have_any_chips_available, has_chips_available]).
+:-op(100, xf, [is_zero, available, does_not_have_any_azulejos_available]).
+:-op(150, xfy, [has, does_not_have]).
 
 
 Value was_assigned_to Variable :- 
@@ -32,14 +33,18 @@ Variable was_equal_to Value :-
     call(MetaVariable)
 .
 
-Dictionary has_chips_available :-
-    MetaPredicate=..[Dictionary, _, Value],
+Dictionary has Azulejos available :-
+    MetaPredicate=..[Dictionary, Azulejos, Value],
     call(MetaPredicate),
     Value > 0, !
 . 
 
-Dictionary does_not_have_any_chips_available :-
-    not(Dictionary has_chips_available)
+Dictionary does_not_have Azulejos available :-
+    not(Dictionary has Azulejos available)
+. 
+
+Dictionary does_not_have_any_azulejos_available :-
+    Dictionary does_not_have _ available
 . 
 
 transducer(MetaPredicate, Transducer, Args) :-
