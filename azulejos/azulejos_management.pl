@@ -1,4 +1,4 @@
-:- [add_azulejos, get_azulejos, center_of_the_table, box_cover, bag]. 
+:- [add_azulejos, get_azulejos, center_of_the_table_Db, box_cover_Db, bag_Db]. 
 
 
 :-op(150, xfx, [from_the, to_the]).

@@ -1,4 +1,4 @@
-:- [wall, '../lists/list'].
+:- [wall_Db, '../lists/list'].
 
 
 generated_walls(0) :- !.

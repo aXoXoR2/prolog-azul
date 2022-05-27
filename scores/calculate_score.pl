@@ -1,13 +1,13 @@
 
 :- ['../walls/wall_Db', '../pattern_lines/pattern_line_Db',
     '../collections/collection_management',
-    '../floor_lines/floor_line_Db']
+    '../floor_lines/floor_line_Db', score_Db]
 . 
 
 
 %!!!!!!!
 
-calculate_the_player_score(Id_player, Score) :-
+calculate_player_score(Id_player, Score) :-
     
     wall(Id_player, Wall),
     pattern_line(Id_player, Pattern_line),
