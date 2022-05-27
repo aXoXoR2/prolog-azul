@@ -1,0 +1,1 @@
+:- dynamic score/2.
