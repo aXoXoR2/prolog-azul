@@ -1,3 +1,4 @@
+
 :- [add_azulejos, get_azulejos, center_of_the_table_Db, box_cover_Db, bag_Db]. 
 
 

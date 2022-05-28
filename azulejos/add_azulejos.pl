@@ -1,4 +1,4 @@
-:- [utils].
+:- ['../utils/utils'].
 
 
 add_azulejos(_,[]) :- !.

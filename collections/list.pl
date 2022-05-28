@@ -1,14 +1,16 @@
-:- ['../utils'].
+
+:- ['../utils/utils'].
 
 :- dynamic list/1.
 
 
 % Se inicializo una lista se tamanno Size, con sus elementos Value
-generated_list(0, _, []) :- !.
+generate_list(0, _, []) :- !.
 
-generated_list(Amount, Value, [Value | Rest_of_the_list]) :-
+generate_list(Amount, Value, [Value | Rest_of_the_list]) :-
+
     Tmp is Amount - 1,  
-    generated_list(Tmp, Value, Rest_of_the_list)
+    generate_list(Tmp, Value, Rest_of_the_list)
 . 
 
 list([  
@@ -26,42 +28,62 @@ list_number([
 ]).
 
 
-selected_a_random_item_of_the_list(List, Lenght, Index, Element) :-
-    Upper is Lenght + 1,
-    generated_random(1, Upper, Index),
-    indexed_in_the_list(List, Index, Element)
+select_a_random_item_of_the_list(List, Lenght, Index, Element) :-
+
+    generated_random(0, Lenght, Index),
+    index_in_the_list(List, Index, Element)
 .  
 
-indexed_in_the_list([Element|_], 0, Element).
 
-indexed_in_the_list([_|Rest_of_the_list], Index, Element) :-
-    indexed_in_the_list(Rest_of_the_list, New_Index, Element),
+index_in_the_list([Element|_], 0, Element).
+
+index_in_the_list([_|Rest_of_the_list], Index, Element) :-
+
+    index_in_the_list(Rest_of_the_list, New_Index, Element),
     Index is New_Index + 1
 .  
 
-removed_item_of_the_list([_|Rest_of_the_list], 1, Rest_of_the_list).
 
-removed_item_of_the_list([First_element|Rest_of_the_list], Index, [First_element|Rest_of_the_resulting_list]) :-
-    removed_item_of_the_list(Rest_of_the_list,New_Index,Rest_of_the_resulting_list),
+remove_this_item_from_the_list([_|Rest_of_the_list], 0, Rest_of_the_list).
+
+remove_this_item_from_the_list([First_element|Rest_of_the_list], Index, [First_element|Rest_of_the_resulting_list]) :-
+
+    remove_this_item_from_the_list(Rest_of_the_list,New_Index,Rest_of_the_resulting_list),
     Index is New_Index + 1
 .
 
 
 length_of_the_list([_|[]], 1) :- !.
 
-length_of_the_list([_|Rest_of_the_list], Lenght) :-
+length_of_the_list([_|Rest_of_the_list], Length) :-
     length_of_the_list(Rest_of_the_list,Decreased_length),
-    Lenght is Decreased_length + 1
+    Length is Decreased_length + 1
 .  
 
 
 get_all_items_of_the_list([], _, [], []) :- !. 
 
-
 get_all_items_of_the_list([Item|Rest_of_the_list], Item, [Item|Rest_of_the_items], Resulting_list) :-
+
     get_all_items_of_the_list(Rest_of_the_list, Item, Rest_of_the_items, Resulting_list), !
 .  
 
 get_all_items_of_the_list([X|Rest_of_the_list], Item, Items, [X|Rest_of_the_resulting_list]) :-
+
     get_all_items_of_the_list(Rest_of_the_list, Item, Items, Rest_of_the_resulting_list), !
 . 
+
+
+assign_into_list([_|Rest_of_the_list], [Value|Rest_of_the_list], 0, Value).
+
+assign_into_list([Item|Rest_of_the_list], [Item|Rest_of_the_resulting_list], Index, Value) :- 
+
+    assign_into_list(Rest_of_the_list, Rest_of_the_resulting_list, New_Index, Value),
+    Index is New_Index + 1
+. 
+
+
+% :-trace(select_a_random_item_of_the_list).
+% :-trace(index_in_the_list).
+% :-trace(generated_random).
+% :-trace(remove_this_item_from_the_list).

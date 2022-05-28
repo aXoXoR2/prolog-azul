@@ -1,5 +1,16 @@
 
-:- [utils, factory, board, azulejos/azulejos_management].
+:- ['azulejos/azulejos_management',
+    'pattern_lines/pattern_lines_management',
+    'floor_lines/floor_lines_management',
+    'initialization/game_initialization',
+    'collections/collections_management',
+    'factories/factories_management',
+    'players/players_management',
+    'scores/scores_management',
+    'utils/utils_management',
+    'walls/walls_management',
+    'rounds/execute']
+. 
 
 
 % Relation between number of factories and players
@@ -15,35 +26,13 @@ dictionary_of_id_chip(4, yellow).
 dictionary_of_id_chip(5, green).
 
 
-% Variables
-number_of_players(2).
+testing :-
 
+    Players = [random,random,random,random],
+    
+    generate_players(Players),
+    assert(number_of_players(4)),
 
-generation_of_factories_tested(Amount) :-
-    filled_factories(factories, number_of_factories, 
-                    factories_generation_transducer, 
-                    factories_were_generated_random, 
-                    dictionary_of_id_chip, 
-                    bag, Amount)
-.  
+    game_initialization(4)
 
-
-selection_of_a_factory_randomly_tested(Item) :-    
-    selected_a_random_factory(factories,
-        number_of_factories,
-        selected_a_random_factory_transducer,
-        selected_a_random_item_of_the_list,
-        removed_item_of_the_list, Item)
-.   
-
-
-master_tester :-
-    generation_of_factories_tested(7),
-    selection_of_a_factory_randomly_tested(_),
-    selection_of_a_factory_randomly_tested(_),
-    selection_of_a_factory_randomly_tested(_),
-    selection_of_a_factory_randomly_tested(_),
-    selection_of_a_factory_randomly_tested(_),
-    selection_of_a_factory_randomly_tested(_),
-    selection_of_a_factory_randomly_tested(_). 
-
+. 

@@ -1,5 +1,5 @@
 
-:- ['../walls/wall_Db', score_Db, calculate_score]. 
+:- ['../walls/wall_Db','../utils/utils', score_Db, calculate_score]. 
 
 
 update_the_player_score(Id_player) :- 

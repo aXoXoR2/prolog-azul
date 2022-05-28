@@ -1,6 +1,6 @@
 
 :- ['../walls/wall_Db', '../pattern_lines/pattern_line_Db',
-    '../collections/collection_management',
+    '../collections/collections_management',
     '../floor_lines/floor_line_Db', score_Db]
 . 
 
@@ -19,7 +19,7 @@ calculate_player_score(Id_player, Score) :-
     floor_line(Floor_line),
 
     Tmp is Amount_of_azulejos_on_the_floor_line - 1,
-    indexed_in_the_list(Floor_line, Tmp, Penalty),
+    index_in_the_list(Floor_line, Tmp, Penalty),
 
     Score is Pattern_line_score - Penalty
 .  
@@ -53,8 +53,8 @@ calculates_the_score_of_a_row_of_the_pattern_line(Wall, Pattern_line, Amount_of_
     
     Row_index is Top - 1,
     wall(Tiled_wall),
-    indexed_in_the_list(Tiled_wall, Row_index, Row),
-    indexed_in_the_list(Row, Col_index, Color),
+    index_in_the_list(Tiled_wall, Row_index, Row),
+    index_in_the_list(Row, Col_index, Color),
     % write('siiii'),
 
     move_next(Row_index, Col_index, Row_index_right, Col_index_right, right),
@@ -76,9 +76,9 @@ calculates_the_score_of_a_row_of_the_pattern_line(Wall, Pattern_line, Amount_of_
     calculate_adjacents(Amount_moving_horizontally, Amount_moving_vertically, Amount_of_adjacents)
 .  
 
-calculates_the_score_of_a_row_of_the_pattern_line(Wall, Pattern_line, Amount_of_adjacents) :-
+calculates_the_score_of_a_row_of_the_pattern_line(_, Pattern_line, Amount_of_adjacents) :-
     
-    Pattern_line = [Color, Amount, Top], 
+    Pattern_line = [_, Amount, Top], 
     
     Amount \= Top, Amount_of_adjacents = 0
 . 
@@ -184,7 +184,7 @@ calculate_adjacents(Amount_moving_horizontally, Amount_moving_vertically, Amount
 %     floor_line(Floor_line),
 
 %     Tmp is Amount_of_azulejos_on_the_floor_line - 1,
-%     indexed_in_the_list(Floor_line, Tmp, Penalty),
+%     index_in_the_list(Floor_line, Tmp, Penalty),
 
 %     Score is Pattern_line_score + Penalty
 % .  

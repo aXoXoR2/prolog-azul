@@ -1,11 +1,10 @@
 
-:- [pattern_line_Db, '../lists/list'].
+:- [pattern_line_Db, '../collections/collections_management'].
 
 
-generated_pattern_lines(0) :- !.
+generate_pattern_lines(0) :- !.
 
-
-generated_pattern_lines(Amount) :-
+generate_pattern_lines(Amount) :-
     
     Pattern_line = [[empty,0,1],
                     [empty,0,2],
@@ -17,5 +16,5 @@ generated_pattern_lines(Amount) :-
     asserta(MetaPredicate),
 
     New_amount is Amount - 1,
-    generated_pattern_lines(New_amount)
+    generate_pattern_lines(New_amount)
 . 
