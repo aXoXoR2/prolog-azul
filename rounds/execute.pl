@@ -1,6 +1,6 @@
 
 :- ['../factories/factories_management', 
-    '../players/players_management',
+    '../players/play',
     '../azulejos/azulejos_management']
 . 
 
@@ -9,7 +9,7 @@ execute_turn(Id_player) :-
     factories(Factories),
     Factories \= [],
 
-    play(Id_player, Factory_index, Azulejo),
+    play(Id_player, Factory_index, Azulejo, Pattern_line_index),
 
     get_all_items_of_the_list(Factory_index, Azulejo, 
         Azulejos, Rest_of_the_azulejos),
