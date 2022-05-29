@@ -23,6 +23,28 @@ turno(Player,Jugada):-random(0,2,R),
 fabrica_o_centro(Player,0,Jugada):-!,
     call(list_of_factories(Fabri)),
     length_mine(Fabri,N),
+=======
+:-[utils/utils, factory, board].
+
+:- dynamic list_of_factories/1, amount_of_factories/1, jugada/3.
+
+
+list_of_factories([  
+    [blue, black, black, yellow], 
+    [yellow, black, blue, black], 
+    [blue, red, black, green], 
+    [blue, black, red, green], 
+    [red, green, red, red], 
+    [blue, yellow, green, green], 
+    [black, blue, black, red]
+]).
+
+amount_of_factories(7).
+
+
+turno(Player,Fabricas_con_azulejos,Jugada):-
+    length_mine(Fabricas_con_azulejos,N),
+
     N1 is N+1,
     random(0,N1,X),!,
     index(Fabri,X,F),
@@ -125,16 +147,5 @@ escoger_color(T,P):-random(0,4,X),
    index(T,X,C),P = C.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+=======
+   index(T,X,C),P = C.

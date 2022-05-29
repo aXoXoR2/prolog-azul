@@ -23,17 +23,10 @@ Variable was_increased_in Add :-
     addition(Variable, Add)
 . 
 
-
-Variable is_zero :-
-    MetaVariable=..[Variable, Value],
-    call(MetaVariable), Value = 0
-.
-=======
 Variable is_zero :- 
     MetaVariable=..[Variable, Value], 
     call(MetaVariable), Value = 0
 . 
-
 
 Variable was_equal_to Value :- 
     MetaVariable=..[Variable, Value],
@@ -44,17 +37,6 @@ Dictionary has Azulejos available :-
     MetaPredicate=..[Dictionary, Azulejos, Value],
     call(MetaPredicate),
     Value > 0, !
-
-.
-
-Dictionary does_not_have Azulejos available :-
-    not(Dictionary has Azulejos available)
-.
-
-Dictionary does_not_have_any_azulejos_available :-
-    Dictionary does_not_have _ available
-.
-=======
 . 
 
 Dictionary does_not_have Azulejos available :-
@@ -64,7 +46,6 @@ Dictionary does_not_have Azulejos available :-
 Dictionary does_not_have_any_azulejos_available :-
     Dictionary does_not_have _ available
 . 
-
 
 transducer(MetaPredicate, Transducer, Args) :-
     MetaPredicate_Transducer=..[Transducer, 
@@ -76,20 +57,11 @@ transducer(MetaPredicate, Transducer, Args) :-
 . 
 
 % Type of Transducer
-
-
-addition_transducer(MetaPredicate, MetaPredicate_Modificated, [Add]) :-
-    MetaPredicate=..[Predicate, Variable, Value],
-    Addition is Value + Add,
-    MetaPredicate_Modificated=..[Predicate, Variable, Addition]
-.
-=======
 addition_transducer(MetaPredicate, MetaPredicate_Modificated, [Add]) :- 
     MetaPredicate=..[Predicate, Variable, Value],
     Addition is Value + Add,
     MetaPredicate_Modificated=..[Predicate, Variable, Addition]
 . 
-
 
 assignment(Variable, Value) :-
     Insert=..[Variable, Value],
@@ -122,24 +94,6 @@ generated_random(L, U, X) :-
 
 
 
-addition(Predicate, Key, Add) :-
-    MetaPredicate=..[Predicate,Key,_],
-    call(MetaPredicate),
-    transducer(MetaPredicate,addition_transducer,[Add])
-.
-
-generated_random(L, U, X):-
-    random(L, U, X), !
-.
-
-generated_random(L, U, X) :-
-    generated_random(L, U, X)
-.
-
-
-
-
-=======
 
 index([X|_],0,X):-!.
 index([_|R],N,X):- N1 is N - 1,
@@ -148,20 +102,6 @@ index([_|R],N,X):- N1 is N - 1,
 searching(X,[X|_],Count,Pos):-!,Pos is Count.
 searching(X,[_|R],Count,Pos):-Count1 is Count+1,searching(X,R,Count1,Pos).
 
-
-minlista([X],X):-!.
-minlista([X|T],N):- minlista(T,N1),min(N1,X,N).
-
-min(X,Y,Y):- X>Y,!.
-min(X,Y,X):-X=<Y.
-
-length_mine([_],N):- N is 1,!.
-length_mine([_|R],N):-length_mine(R,N1),N is N1+1.
-
-
-
-
-=======
 maxlista([X],X):-!.
 maxlista([X|T],N):- maxlista(T,N1),max(N1,X,N).
 
@@ -170,5 +110,4 @@ max(X,Y,Y):-X=<Y.
 
 length_mine([_],N):-N1 is N, N is N1+1,!.
 length_mine([_|R],N):-length_mine(R,N1),N is N1+1.
-
 

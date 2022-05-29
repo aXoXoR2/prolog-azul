@@ -1,6 +1,4 @@
-:- [utils].
-
-
+:- [utils/utils].
 
 :- dynamic
     wall/1,
@@ -11,11 +9,8 @@
     dictionary_colors/2,
     azulejos_zona_final/2
 .
-
-
-
-
-
+           
+=======
 iniciar_dictionary(0):-asserta(dictionary_colors(1,black)),
     asserta(dictionary_colors(2,red)),
     asserta(dictionary_colors(3,blue)),
@@ -121,46 +116,10 @@ calcular_zona_final(3,-4).
 calcular_zona_final(4,-6).
 calcular_zona_final(5,-8).
 calcular_zona_final(6,-11).
+
 calcular_zona_final(7,-14).
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+=======
+calcular_zona_final(7,-14).

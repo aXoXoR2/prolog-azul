@@ -4,13 +4,11 @@
 
 
 % Se inicializo una lista se tamanno Size, con sus elementos Value
-generated_list(0, Value, Value) :- !.
+generated_list(0, _, []) :- !.
 
-generated_list(Size, Value, [X|Y]) :-
-    X = Value, 
-    Size > 0, 
-    Tmp is Size - 1,  
-    generated_list(Tmp, Value, Y)
+generated_list(Amount, Value, [Value | Rest_of_the_list]) :-
+    Tmp is Amount - 1,  
+    generated_list(Tmp, Value, Rest_of_the_list)
 . 
 
 list([  
@@ -51,8 +49,19 @@ removed_item_of_the_list([First_element|Rest_of_the_list], Index, [First_element
 
 length_of_the_list([_|[]], 1) :- !.
 
-length_of_the_list([First_item|Rest_of_the_list], Lenght) :-
+length_of_the_list([_|Rest_of_the_list], Lenght) :-
     length_of_the_list(Rest_of_the_list,Decreased_length),
     Lenght is Decreased_length + 1
 .  
- 
+
+
+get_all_items_of_the_list([], _, [], []) :- !. 
+
+
+get_all_items_of_the_list([Item|Rest_of_the_list], Item, [Item|Rest_of_the_items], Resulting_list) :-
+    get_all_items_of_the_list(Rest_of_the_list, Item, Rest_of_the_items, Resulting_list), !
+.  
+
+get_all_items_of_the_list([X|Rest_of_the_list], Item, Items, [X|Rest_of_the_resulting_list]) :-
+    get_all_items_of_the_list(Rest_of_the_list, Item, Items, Rest_of_the_resulting_list), !
+. 
